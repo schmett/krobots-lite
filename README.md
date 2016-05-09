@@ -51,20 +51,20 @@ krobots remove  <service>
   - [ ] [MongoDB](docs/k8s-objects/db/mongo.md) `krobots <cmd> mongo`
   - [ ] [Elasticsearch](docs/k8s-objects/db/elastic.md) `krobots <cmd> elastic`
 - [KeyValue](docs/k8s-objects/kv/README.md.md)
-  - [Redis](docs/k8s-objects/kv/redis.md) `krobots <cmd> redis`
-  - [Memcached](docs/k8s-objects/kv/memcached.md) `krobots <cmd> memcached`
+  - [ ] [Redis](docs/k8s-objects/kv/redis.md) `krobots <cmd> redis`
+  - [ ] [Memcached](docs/k8s-objects/kv/memcached.md) `krobots <cmd> memcached`
 - [Messaging](docs/k8s-objects/msg/README.md)
-  - [Kafka](docs/k8s-objects/msg/kafka.md) `krobots <cmd> kafka`
-  - [RabbitMQ](docs/k8s-objects/msg/bunnies.md) `krobots <cmd> rabbitmq`
+  - [ ] [Kafka](docs/k8s-objects/msg/kafka.md) `krobots <cmd> kafka`
+  - [ ] [RabbitMQ](docs/k8s-objects/msg/bunnies.md) `krobots <cmd> rabbitmq`
 - [Edge Servers](docs/k8s-objects/edge/README.md.md)
-  - [Nginx Frontend](docs/k8s-objects/edge/nginx.md) `krobots <cmd> nginx`
-  - [Deis Router](docs/k8s-objects/edge/router.md) `krobots <cmd> router`
+  - [ ] [Nginx Frontend](docs/k8s-objects/edge/nginx.md) `krobots <cmd> nginx`
+  - [ ] [Deis Router](docs/k8s-objects/edge/router.md) `krobots <cmd> router`
 - [k8s Addons](docs/k8s-objects/k8s/README.md)
-  - [DNS](docs/k8s-objects/k8s/dns.yml) `krobots <cmd> dns`
-  - [Registry](docs/k8s-objects/k8s/registry.yml) `krobots <cmd> registry`
-  - [Monitoring](docs/k8s-objects/k8s/monitoring.yml) `krobots <cmd> monitoring`
-  - [Logging](docs/k8s-objects/k8s/logging.yml) `krobots <cmd> logging`
-  - [Dashboard](docs/k8s-objects/k8s/dashboard.yml) `krobots <cmd> dashboard`
+  - [x] [DNS](docs/k8s-objects/k8s/dns.yml) `krobots <cmd> dns`
+  - [ ] [Registry](docs/k8s-objects/k8s/registry.yml) `krobots <cmd> registry`
+  - [ ] [Monitoring](docs/k8s-objects/k8s/monitoring.yml) `krobots <cmd> monitoring`
+  - [ ] [Logging](docs/k8s-objects/k8s/logging.yml) `krobots <cmd> logging`
+  - [ ] [Dashboard](docs/k8s-objects/k8s/dashboard.yml) `krobots <cmd> dashboard`
 
 
 Don't see your favorite here? Make a PR!
@@ -101,9 +101,9 @@ comes with a services library and
 the following builder packs too.
 
 - [Web apps](docs/k8s-objects/app/README.md)
-  - [NodeJS](docs/k8s-objects/app/nodejs.md)
-  - [Python](docs/k8s-objects/app/python.md)
-  - [Golang](docs/k8s-objects/app/golang.md)
+  - [ ] [NodeJS](docs/k8s-objects/app/nodejs.md)
+  - [ ] [Python](docs/k8s-objects/app/python.md)
+  - [ ] [Golang](docs/k8s-objects/app/golang.md)
 
 
 #### Deploying your tech stack dependencies
