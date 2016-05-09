@@ -46,10 +46,10 @@ krobots remove  <service>
 ```
 
 - [Databases](docs/k8s-objects/db/README.md)
-  - [MySQL](docs/k8s-objects/db/mysql.md) `krobots <cmd> mysql`
-  - [Postgres](docs/k8s-objects/db/psql.md) `krobots <cmd> psql`
-  - [MongoDB](docs/k8s-objects/db/mongo.md) `krobots <cmd> mongo`
-  - [Elasticsearch](docs/k8s-objects/db/elastic.md) `krobots <cmd> elastic`
+  - [ ] [MySQL](docs/k8s-objects/db/mysql.md) `krobots <cmd> mysql`
+  - [ ] [Postgres](docs/k8s-objects/db/psql.md) `krobots <cmd> psql`
+  - [ ] [MongoDB](docs/k8s-objects/db/mongo.md) `krobots <cmd> mongo`
+  - [ ] [Elasticsearch](docs/k8s-objects/db/elastic.md) `krobots <cmd> elastic`
 - [KeyValue](docs/k8s-objects/kv/README.md.md)
   - [Redis](docs/k8s-objects/kv/redis.md) `krobots <cmd> redis`
   - [Memcached](docs/k8s-objects/kv/memcached.md) `krobots <cmd> memcached`
