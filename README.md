@@ -1,5 +1,8 @@
-# hackreactor_talk
-Kubernetes talk at Hack Reactor on May 13, 2016
+# krobots-lite
+
+Easy-to-use and up-to-date Kubernetes tutorials based on the k8s hyperkube.
+
+Insprired by my Kubernetes talk at Hack Reactor on May 13, 2016.
 
 
 ## Introduction
@@ -11,8 +14,10 @@ You only need [Docker](www.docker.com) and this repository.
 Instructions will be based on OS X, but should work on linux with minor changes.
 
 ```
-git clone https://github.com/verdverm/hackreactor_talk
-cd hackreactor_talk
+git clone https://github.com/verdverm/krobots-lite
+cd krobots-lite
+
+sudo ln -s $(PWD)/scripts/krobots.sh /usr/local/bin/krobots
 ```
 
 
@@ -123,28 +128,26 @@ we can start creating our MEAN stack objects.
 
 The stack will consist of the following k8s objects:
 
-- MongoDB
-  -- Deployment
-  -- Service
-- NodeJS apps
-  -- Deployment
-  -- Service
-- Nginx
-  -- Deployment
-  -- Service
-
-
-MongoDB Deployment:
-
-```
-```
-
-
+- [Web apps](docs/webapps.md)
+  -- [NodeJS](docs/nodejs.md)
+  -- [Python](docs/python.md)
+- [Other](docs/other.md)
+  -- [Redis](docs/redis.md)
+  -- [RabbitMQ](docs/bunnies.md)
+- [Databases](docs/databases.md)
+  -- [MySQL](docs/mysql.md)
+  -- [Postgres](docs/psql.md)
+  -- [MongoDB](docs/mongo.md)
+  -- [Elasticsearch](docs/elastic.md)
+- [Edge Servers](docs/edges.md)
+  -- [Nginx Frontend](docs/nginx.md)
+  -- [SSL termination](docs/nginx-ssl.md)
+  -- [Deis Router](docs/deis-router.md)
 
 
 
 
-## Starting the MEAN stack
+## Starting your tech stack components
 
 
 
