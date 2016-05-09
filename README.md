@@ -30,7 +30,7 @@ We will then connect the `kubectl` tool to our dockerized cluster.
 #### Starting the Hyperkube
 
 ```
-./scripts/start_hyperkube.sh
+krobots hyperkube start
 ```
 
 This will bring up a docker container 
