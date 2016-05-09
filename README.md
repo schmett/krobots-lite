@@ -5,163 +5,115 @@ Easy-to-use and up-to-date Kubernetes tutorials based on the k8s hyperkube.
 Insprired by my Kubernetes talk at Hack Reactor on May 13, 2016.
 
 
-## Introduction
+## Front Matter
+
+[Documentation](docs/README.md):
+- [Installing krobots and kubernetes](docs/install.md)
+- [Overview and theory to kubernetes](docs/theory.md)
+- [Walkthrough of a simple application](docs/simple.md)
+- [Explination of k8s objects and services](docs/k8s-objs.md)
+- [Advanced example using krobots-lite](docs/advanced.md)
+- [More krobots examples and templates](docs/examples.md)
 
 
-## Getting Setup
-
-You only need [Docker](www.docker.com) and this repository.
-Instructions will be based on OS X, but should work on linux with minor changes.
-
-```
-git clone https://github.com/verdverm/krobots-lite
-cd krobots-lite
-
-sudo ln -s $(PWD)/scripts/krobots.sh /usr/local/bin/krobots
-```
-
-
-## Starting Kubernetes
-
-To simplify things, we will be using the Kubernetes **hyperkube**.
-It is a self contained docker container for experimenting with Kubernetes.
-We will then connect the `kubectl` tool to our dockerized cluster.
-
-#### Starting the Hyperkube
-
-```
-krobots hyperkube start
-```
-
-This will bring up a docker container 
-which will in turn spawn a number of
-Kubernetes containers.
-
-#### Downloading the `kubectl` tool
-
-`kubectl` is the CLI tool we use to talk to the cluster.
-
-OS X:
-
-```
-curl -O "http://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/darwin/amd64/kubectl"
-chmod 755 kubectl
-sudo mv kubectl /usr/local/bin
-```
-
-Linux:
-
-```
-wget "http://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubectl"
-chmod 755 kubectl
-sudo mv kubectl /usr/local/bin
-```
-
-You can verify it is installed by running `kubectl version`
-
-
-
-#### Connecting `kubectl` to the Hyperkube
-
-
-For OS X only, we need to expose the localhost port inside the Docker Machine.
-In a second terminal, run
-
-```
-docker-machine ssh $(docker-machine active) -N -L 8080:localhost:8080
-```
-
-Now we can tell the `kubectl` tool about our cluster.
-
-```
-kubectl config set-cluster hyper-k8s --server=http://localhost:8080
-kubectl config set-context hyper-k8s --cluster=hyper-k8s
-kubectl config use-context hyper-k8s
-```
-
-Test that it worked by running:
-
-```
-kubectl get nodes
-```
-
-You should see something similar to:
-
-```
-NAME        STATUS    AGE
-127.0.0.1   Ready     18m
-```
-
-#### Adding cluster DNS
-
-Having cluster NDS will allow us to easily find
-and reference our services by name.
-
-We can do things like...
-
-```
-db.connect("postgres:5432")
-
-http.GET("myservice:9000/api/stuff")
-```
-
-Installing skydns:
-
-```
-kubectl create namespace kube-system
-kubectl create -f k8s-objects/skydns.yml
-```
-
-You can verify that dns is setup, run
-
-```
-kubectl cluster-info
-kubectl get svc,ep,rc,pods --namespace=kube-system
-```
-
-
-
-## Creating the k8s objects
+## A Quick Overview
 
 Now that we have a Kubernetes environment,
-we can start creating our MEAN stack objects.
+we can start creating all sorts of k8s services and objects.
 
-The stack will consist of the following k8s objects:
+**krobots-lite** comes with a host of services in its library.
+You will find the list just below.
+You can also create your own apps to run
+in the hyperkube. The next section covers that.
+
+#### Available Services
+
+krobots-lite has the following services in its library.
+With any of the services you can
+
+```
+krobots install <service>
+krobots status  <service>
+krobots detail  <service>
+krobots remove  <service>
+```
+
+- [Databases](docs/db/README.md)
+  - [MySQL](docs/db/mysql.md) `krobots <cmd> mysql`
+  - [Postgres](docs/db/psql.md) `krobots <cmd> psql`
+  - [MongoDB](docs/db/mongo.md) `krobots <cmd> mongo`
+  - [Elasticsearch](docs/db/elastic.md) `krobots <cmd> elastic`
+- [KeyValue](docs/kv/README.md.md)
+  - [Redis](docs/kv/redis.md) `krobots <cmd> redis`
+  - [Memcached](docs/kv/memcached.md) `krobots <cmd> memcached`
+- [Messaging](docs/msg/README.md)
+  - [Kafka](docs/msg/kafka.md) `krobots <cmd> kafka`
+  - [RabbitMQ](docs/msg/bunnies.md) `krobots <cmd> rabbitmq`
+- [Edge Servers](docs/edge/README.md.md)
+  - [Nginx Frontend](docs/edge/nginx.md) `krobots <cmd> nginx`
+  - [Deis Router](docs/edge/router.md) `krobots <cmd> router`
+- [k8s Addons](docs/k8s/README.md)
+  - [DNS](docs/k8s/dns.yml) `krobots <cmd> dns`
+  - [Registry](docs/k8s/registry.yml) `krobots <cmd> registry`
+  - [Monitoring](docs/k8s/monitoring.yml) `krobots <cmd> monitoring`
+  - [Logging](docs/k8s/logging.yml) `krobots <cmd> logging`
+  - [Dashboard](docs/k8s/dashboard.yml) `krobots <cmd> dashboard`
+
+
+Don't see your favorite here? Make a PR!
+
+
+#### Preparing and using your application
+
+You should now be able to interact
+with your k8s cluster from your code.
+
+The next secion covers how to run your
+app in the hyperkube cluster.
+You will need to add a `Dockerfile` and `krobots-app.yml`
+to your project.
+If you are using a krobots-lite
+builder pack, see thoses pages
+for more information.
+
+
+
+## Running Apps on Kubernetes
+
+You can now run just about anything on kubernetes!
+This process involves 
+
+1. Deploying your app's service dependencies.
+1. Building and testing your applications
+1. Packaging and deploying your own app.
+1. Exposing your app to the internet.
+1. Modifying code and updating your app.
+
+To simplify some of this, krobots-lite
+comes with a services library and
+the following builder packs too.
 
 - [Web apps](docs/webapps.md)
-  -- [NodeJS](docs/nodejs.md)
-  -- [Python](docs/python.md)
-- [Other](docs/other.md)
-  -- [Redis](docs/redis.md)
-  -- [RabbitMQ](docs/bunnies.md)
-- [Databases](docs/databases.md)
-  -- [MySQL](docs/mysql.md)
-  -- [Postgres](docs/psql.md)
-  -- [MongoDB](docs/mongo.md)
-  -- [Elasticsearch](docs/elastic.md)
-- [Edge Servers](docs/edges.md)
-  -- [Nginx Frontend](docs/nginx.md)
-  -- [SSL termination](docs/nginx-ssl.md)
-  -- [Deis Router](docs/deis-router.md)
+  - [NodeJS](docs/app/nodejs.md)
+  - [Python](docs/app/python.md)
+  - [Golang](docs/app/golang.md)
+
+
+#### Deploying your tech stack dependencies
+
+See the section above. Basically you `krobots install <service>`
 
 
 
+## Deploying New Code
 
-## Starting your tech stack components
+how to do rolling updates with new code
 
 
 
 
 
-
-## Developing and deploying new code
-
-
-
-
-
-
-## Where to next
+## Where To Next
 
 Kubernetes is a significant project and there is much to know.
 Here are some suggestions for deepening your understanding.
@@ -178,27 +130,5 @@ Storage:
 Need for explination...
 
 
-
-
-
-
-## TL;DR
-
-on OS X:
-
-```
-# Get this repositort
-git clone https://github.com/verdverm/hackreactor_talk
-cd hackreactor_talk
-
-# Start the Kubernetes hyperkube
-./scripts/start_hyperkube.sh
-
-# Download the kubectl tool
-
-
-
-
-```
 
 

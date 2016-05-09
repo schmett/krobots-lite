@@ -97,8 +97,17 @@ k8s_objects="svc,ep,deployment,rs,hpa,rc,pods"
 k8s_labels=""
 case $ARG in
   dns)
-    k8sfile="k8s/skydns.yml"
+    k8sfile="k8s/dns.yml"
     k8s_status="svc,ep,rc,pods --namespace=kube-system"
+    ;;
+  monitoring)
+    k8sfile="k8s/monitoring.yml"
+    ;;
+  logging)
+    k8sfile="k8s/logging.yml"
+    ;;
+  dashboard)
+    k8sfile="k8s/dashboard.yml"
     ;;
   mysql)
     k8sfile="db/mysql.yml"
@@ -138,10 +147,10 @@ esac
 
 case $CMD in
   install)
-    kubectl create -f $krobotsPath/$k8sfile
+    kubectl create -f $krobotsPath/../k8s-objects/$k8sfile
     ;;
   update)
-    kubectl apply -f $krobotsPath/$k8sfile
+    kubectl apply -f $krobotsPath/../k8s-objects/$k8sfile
     ;;
   status)
     kubectl get $k8s_objects
@@ -151,7 +160,7 @@ case $CMD in
     kubectl describe $k8s_objects
     ;;
   remove)
-    kubectl delete -f $krobotsPath/$k8sfile
+    kubectl delete -f $krobotsPath/../k8s-objects/$k8sfile
     ;;
   app)
     ISAPP=1
