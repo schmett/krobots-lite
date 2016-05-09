@@ -1,11 +1,18 @@
 # krobots-lite
 
-Easy-to-use and up-to-date Kubernetes tutorials based on the k8s hyperkube.
+AppsOps and tutorials based on the k8s hyperkube.
 
-Insprired by my Kubernetes talk at Hack Reactor on May 13, 2016.
+
+**_Warning, not everything works yet, but should soon.
+This is a week long spare time project before Friday.
+[Tony, May 8, 2016 :]_**
+
+Jump to [Installing krobots and kubernetes](docs/install.md) for now.
 
 
 ## Front Matter
+
+This project was insprired by my Kubernetes talk at Hack Reactor on May 13, 2016.
 
 [Documentation](docs/README.md):
 - [Installing krobots and kubernetes](docs/install.md)
