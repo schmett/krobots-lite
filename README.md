@@ -45,26 +45,26 @@ krobots detail  <service>
 krobots remove  <service>
 ```
 
-- [Databases](docs/db/README.md)
-  - [MySQL](docs/db/mysql.md) `krobots <cmd> mysql`
-  - [Postgres](docs/db/psql.md) `krobots <cmd> psql`
-  - [MongoDB](docs/db/mongo.md) `krobots <cmd> mongo`
-  - [Elasticsearch](docs/db/elastic.md) `krobots <cmd> elastic`
-- [KeyValue](docs/kv/README.md.md)
-  - [Redis](docs/kv/redis.md) `krobots <cmd> redis`
-  - [Memcached](docs/kv/memcached.md) `krobots <cmd> memcached`
-- [Messaging](docs/msg/README.md)
-  - [Kafka](docs/msg/kafka.md) `krobots <cmd> kafka`
-  - [RabbitMQ](docs/msg/bunnies.md) `krobots <cmd> rabbitmq`
-- [Edge Servers](docs/edge/README.md.md)
-  - [Nginx Frontend](docs/edge/nginx.md) `krobots <cmd> nginx`
-  - [Deis Router](docs/edge/router.md) `krobots <cmd> router`
-- [k8s Addons](docs/k8s/README.md)
-  - [DNS](docs/k8s/dns.yml) `krobots <cmd> dns`
-  - [Registry](docs/k8s/registry.yml) `krobots <cmd> registry`
-  - [Monitoring](docs/k8s/monitoring.yml) `krobots <cmd> monitoring`
-  - [Logging](docs/k8s/logging.yml) `krobots <cmd> logging`
-  - [Dashboard](docs/k8s/dashboard.yml) `krobots <cmd> dashboard`
+- [Databases](docs/k8s-objects/db/README.md)
+  - [MySQL](docs/k8s-objects/db/mysql.md) `krobots <cmd> mysql`
+  - [Postgres](docs/k8s-objects/db/psql.md) `krobots <cmd> psql`
+  - [MongoDB](docs/k8s-objects/db/mongo.md) `krobots <cmd> mongo`
+  - [Elasticsearch](docs/k8s-objects/db/elastic.md) `krobots <cmd> elastic`
+- [KeyValue](docs/k8s-objects/kv/README.md.md)
+  - [Redis](docs/k8s-objects/kv/redis.md) `krobots <cmd> redis`
+  - [Memcached](docs/k8s-objects/kv/memcached.md) `krobots <cmd> memcached`
+- [Messaging](docs/k8s-objects/msg/README.md)
+  - [Kafka](docs/k8s-objects/msg/kafka.md) `krobots <cmd> kafka`
+  - [RabbitMQ](docs/k8s-objects/msg/bunnies.md) `krobots <cmd> rabbitmq`
+- [Edge Servers](docs/k8s-objects/edge/README.md.md)
+  - [Nginx Frontend](docs/k8s-objects/edge/nginx.md) `krobots <cmd> nginx`
+  - [Deis Router](docs/k8s-objects/edge/router.md) `krobots <cmd> router`
+- [k8s Addons](docs/k8s-objects/k8s/README.md)
+  - [DNS](docs/k8s-objects/k8s/dns.yml) `krobots <cmd> dns`
+  - [Registry](docs/k8s-objects/k8s/registry.yml) `krobots <cmd> registry`
+  - [Monitoring](docs/k8s-objects/k8s/monitoring.yml) `krobots <cmd> monitoring`
+  - [Logging](docs/k8s-objects/k8s/logging.yml) `krobots <cmd> logging`
+  - [Dashboard](docs/k8s-objects/k8s/dashboard.yml) `krobots <cmd> dashboard`
 
 
 Don't see your favorite here? Make a PR!
@@ -100,10 +100,10 @@ To simplify some of this, krobots-lite
 comes with a services library and
 the following builder packs too.
 
-- [Web apps](docs/webapps.md)
-  - [NodeJS](docs/app/nodejs.md)
-  - [Python](docs/app/python.md)
-  - [Golang](docs/app/golang.md)
+- [Web apps](docs/k8s-objects/app/README.md)
+  - [NodeJS](docs/k8s-objects/app/nodejs.md)
+  - [Python](docs/k8s-objects/app/python.md)
+  - [Golang](docs/k8s-objects/app/golang.md)
 
 
 #### Deploying your tech stack dependencies
