@@ -17,6 +17,7 @@ This project was insprired by my Kubernetes talk at Hack Reactor on May 13, 2016
 [Documentation](docs/README.md):
 - [Installing krobots and kubernetes](docs/install.md)
 - [Overview and theory to kubernetes](docs/theory.md)
+- [References for Docker and Kubernetes](docs/references.md)
 - [Walkthrough of a simple application](docs/simple.md)
 - [Explination of k8s objects and services](docs/k8s-objs.md)
 - [Advanced example using krobots-lite](docs/advanced.md)
@@ -100,7 +101,7 @@ To simplify some of this, krobots-lite
 comes with a services library and
 the following builder packs too.
 
-- [Web apps](docs/k8s-objects/app/README.md)
+- [Apps Build Packs](docs/k8s-objects/app/README.md)
   - [ ] [NodeJS](docs/k8s-objects/app/nodejs.md)
   - [ ] [Python](docs/k8s-objects/app/python.md)
   - [ ] [Golang](docs/k8s-objects/app/golang.md)
