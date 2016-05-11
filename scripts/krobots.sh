@@ -1,7 +1,9 @@
 #!/bin/bash
 
+set -e
+
 krobotsPath=${0%/*}
-krobotsPath=$(dirname $(readlink  $0))
+#krobotsPath=$(dirname $(readlink  $0))
 printf "krobots-lite\n---------------\n\n"
 # echo "$krobotsPath"
 
@@ -21,7 +23,7 @@ case $CMD in
   hyperkube) 
     case $ARG in
       start)
-        `$krobotsPath/hyperkube.sh`
+        $krobotsPath/hyperkube.sh
         exit 0
         ;;
       stop)
@@ -70,7 +72,7 @@ if [ "$ISAPP" -eq "1" ]; then
         kubectl apply -f k8s-app.yml
         ;;
       status)
-        kubectl get svc,ep,deployment,rs
+        kubectl get svc,ep,deployment,rs -l myapp
         ;;
       detail)
         echo "krobots detail... not implemented yet. PR?"
@@ -111,38 +113,49 @@ case $ARG in
     ;;
   mysql)
     k8sfile="db/mysql.yml"
+    k8s_labels="-l app=mysql"
     ;;
   psql)
     k8sfile="db/psql.yml"
+    k8s_labels="-l app=postgres"
     ;;
   mongo)
     k8sfile="db/mongo.yml"
+    k8s_labels="-l app=mongo"
     ;;
   elastic)
     k8sfile="db/elastic.yml"
+    k8s_labels="-l app=elastic"
     ;;
   rabbitmq)
     k8sfile="msg/rabbitmq.yml"
+    k8s_labels="-l app=rabbitmq"
     ;;
   kafka)
     k8sfile="msg/kafka.yml"
+    k8s_labels="-l app=kafka"
     ;;
   redis)
     k8sfile="kv/redis.yml"
+    k8s_labels="-l app=redis"
     ;;
   memcached)
     k8sfile="kv/memcached.yml"
+    k8s_labels="-l app=memcached"
     ;;
   nginx)
     k8sfile="edge/nginx.yml"
+    k8s_labels="-l app=nginx"
     ;;
   router)
     k8sfile="edge/router.yml"
+    k8s_labels="-l app=router"
     ;;
   all)
     ;;
   *)
-    echo "sorry, '$service' is still under construction. PR?"
+    echo "sorry, '$ARG' is still under construction. PR?"
+    exit 1
 esac
 
 case $CMD in
@@ -153,7 +166,7 @@ case $CMD in
     kubectl apply -f $krobotsPath/../k8s-objects/$k8sfile
     ;;
   status)
-    kubectl get $k8s_objects
+    kubectl get $k8s_objects $k8s_labels
     ;;
   detail)
     kubectl get $k8s_objects

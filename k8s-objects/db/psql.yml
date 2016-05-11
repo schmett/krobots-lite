@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "postgres"
+  labels:
+    app: postgres
+    group: db
+    role: master
+    tier: backend
+    env: dev
+spec:
+  ports:
+  - port: 5432
+    targetPort: 5432
+  selector:
+    app: postgres
+    group: db
+    role: master
+    tier: backend
+    env: dev
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: "postgres"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+        group: db
+        role: master
+        tier: backend
+        env: dev
+      annotations:
+        version: "9.4"
+    spec:
+      containers:
+      - name: postgres
+        image: "sameersbn/postgresql:9.4-21"
+        securityContext:
+          privileged: true
+        env:
+          - name: DB_USER
+            value: postgres
+          - name: DB_PASS
+            value: password
+          - name: DB_NAME
+            value: mydb
+          - name: PG_PASSWORD
+            value: postresql
+        volumeMounts:
+          - name: psql-local-volume
+            mountPath: /var/lib/postgresql
+        ports:
+          - containerPort: 5432
+      volumes:
+        - name: psql-local-volume
+          emptyDir: {}

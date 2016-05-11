@@ -47,16 +47,16 @@ krobots remove  <service>
 ```
 
 - [Databases](docs/k8s-objects/db/README.md)
-  - [ ] [MySQL](docs/k8s-objects/db/mysql.md) `krobots <cmd> mysql`
-  - [ ] [Postgres](docs/k8s-objects/db/psql.md) `krobots <cmd> psql`
-  - [ ] [MongoDB](docs/k8s-objects/db/mongo.md) `krobots <cmd> mongo`
-  - [ ] [Elasticsearch](docs/k8s-objects/db/elastic.md) `krobots <cmd> elastic`
+  - [x] [MySQL](docs/k8s-objects/db/mysql.md) `krobots <cmd> mysql`
+  - [x] [Postgres](docs/k8s-objects/db/psql.md) `krobots <cmd> psql`
+  - [x] [MongoDB](docs/k8s-objects/db/mongo.md) `krobots <cmd> mongo`
+  - [x] [Elasticsearch](docs/k8s-objects/db/elastic.md) `krobots <cmd> elastic`
 - [KeyValue](docs/k8s-objects/kv/README.md.md)
-  - [ ] [Redis](docs/k8s-objects/kv/redis.md) `krobots <cmd> redis`
+  - [x] [Redis](docs/k8s-objects/kv/redis.md) `krobots <cmd> redis`
   - [ ] [Memcached](docs/k8s-objects/kv/memcached.md) `krobots <cmd> memcached`
 - [Messaging](docs/k8s-objects/msg/README.md)
-  - [ ] [Kafka](docs/k8s-objects/msg/kafka.md) `krobots <cmd> kafka`
-  - [ ] [RabbitMQ](docs/k8s-objects/msg/bunnies.md) `krobots <cmd> rabbitmq`
+  - [x] [Kafka](docs/k8s-objects/msg/kafka.md) `krobots <cmd> kafka`
+  - [x] [RabbitMQ](docs/k8s-objects/msg/bunnies.md) `krobots <cmd> rabbitmq`
 - [Edge Servers](docs/k8s-objects/edge/README.md.md)
   - [ ] [Nginx Frontend](docs/k8s-objects/edge/nginx.md) `krobots <cmd> nginx`
   - [ ] [Deis Router](docs/k8s-objects/edge/router.md) `krobots <cmd> router`

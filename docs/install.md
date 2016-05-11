@@ -14,8 +14,10 @@ Instructions will be based on OS X, but should work on linux with minor changes.
 git clone https://github.com/verdverm/krobots-lite
 cd krobots-lite
 
-# sudo install the tool
-sudo ln -s $(PWD)/scripts/krobots.sh /usr/local/bin/krobots
+# install the tool
+ln -s $(PWD)/scripts/krobots.sh /usr/local/bin/krobots
+# or make an alias in your .profile, .bash_profile, etc
+alias krobots="$HOME/path/to/krobots-lite/scripts/krobots.sh"
 
 # set the data directory
 # defaults to the install directory
@@ -36,7 +38,7 @@ We will then connect the `kubectl` tool to our dockerized cluster.
 krobots hyperkube start
 ```
 
-This will bring up a docker container 
+This will bring up a docker container
 which will in turn spawn a number of
 Kubernetes containers.
 
@@ -68,7 +70,7 @@ You can verify it is installed by running `kubectl version`
 
 
 For OS X only, we need to expose the localhost port inside the Docker Machine.
-In a second terminal, run
+**In a second terminal, run**
 
 ```
 docker-machine ssh $(docker-machine active) -N -L 8080:localhost:8080
@@ -145,12 +147,16 @@ krobots status dns
 
 #### Adding cluster Registry
 
+not ready yet
+
 ```
 krobots install registry
 ```
 
 
 #### Adding cluster Monitoring
+
+not ready yet
 
 ```
 krobots install monitoring
@@ -159,12 +165,16 @@ krobots install monitoring
 
 #### Adding cluster Logging
 
+not ready yet
+
 ```
 krobots install logging
 ```
 
 
 #### Adding cluster Dashboard
+
+not ready yet
 
 ```
 krobots install dashboard

@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  labels:
+    app: mysql
+    group: db
+    role: master
+    tier: backend
+    env: dev
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "mysql"
+  labels:
+    app: mysql
+    group: db
+    role: master
+    tier: backend
+    env: dev
+spec:
+  ports:
+    - port: 3308
+      targetPort: 3308
+  selector:
+    app: mysql
+    group: db
+    role: master
+    tier: backend
+    env: dev
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: "mysql"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql
+        group: db
+        role: master
+        tier: backend
+        env: dev
+      annotations:
+        version: "5.7.12"
+    spec:
+      containers:
+      - name: mysql
+        image: "library/mysql:5.7.12"
+        env:
+        - name: MYSQL_USER
+          value: mysql
+        - name: MYSQL_PASSWORD
+          value: password
+        - name: MYSQL_DATABASE
+          value: mydb
+        - name: MYSQL_ROOT_PASSWORD
+          value: rootpass
+        ports:
+        - containerPort: 3308
+        volumeMounts:
+        - name: mysql-local-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-local-storage
+        emptyDir: {}
+
