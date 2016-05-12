@@ -7,10 +7,12 @@ metadata:
     group: webapp
     tier: frontend
     env: dev
+    router.deis.io/routable: "true"
+  annotations:
+    router.deis.io/domains: hyper-k8s,www.krobots.io,krobots.io
 spec:
-  type: NodePort
   ports:
-    - port: 3000
+    - port: 80
       targetPort: 3000
       # nodePort: 32081
   selector:

@@ -101,7 +101,7 @@ k8s_labels=""
 case $ARG in
   dns)
     k8sfile="k8s/dns.yml"
-    k8s_status="svc,ep,rc,pods --namespace=kube-system"
+    k8s_objects="svc,ep,rc,pods --namespace=kube-system"
     ;;
   monitoring)
     k8sfile="k8s/monitoring.yml"
@@ -150,9 +150,12 @@ case $ARG in
     ;;
   router)
     k8sfile="edge/router.yml"
-    k8s_labels="-l app=router"
+    k8s_labels="--namespace=deis"
+    k8s_objects="svc,ep,deployment,rs,pods"
     ;;
   all)
+    k8s_objects="svc,ep,deployment,rs,pods"
+    k8s_labels="--all-namespaces"
     ;;
   *)
     echo "sorry, '$ARG' is still under construction. PR?"
@@ -167,6 +170,7 @@ case $CMD in
     kubectl apply -f $krobotsPath/../k8s-objects/$k8sfile
     ;;
   status)
+    echo kubectl get $k8s_objects $k8s_labels
     kubectl get $k8s_objects $k8s_labels
     ;;
   detail)
