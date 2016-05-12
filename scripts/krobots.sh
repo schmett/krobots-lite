@@ -59,27 +59,28 @@ fi
 
 
 if [ "$ISAPP" -eq "1" ]; then
-
+    APP=`cat krobots.txt`
     CMD=$2
+    echo "krobots: app ($APP) $CMD"
     case $CMD in
       create)
         echo "sorry, create is not implemented yet. PR?"
         ;;
       install)
-        kubectl create -f k8s-app.yml
+        kubectl create -f krobots.yml
         ;;
       update)
-        kubectl apply -f k8s-app.yml
+        kubectl apply -f krobots.yml
         ;;
       status)
-        kubectl get svc,ep,deployment,rs -l myapp
+        kubectl get svc,ep,deployment,rs -l app=$APP
         ;;
       detail)
         echo "krobots detail... not implemented yet. PR?"
         exit 1
         ;;
       remove)
-        kubectl delete -f k8s-app.yml
+        kubectl delete -f krobots.yml
         ;;
       *)
         echo "shouldn't get here... CMD='$CMD'"

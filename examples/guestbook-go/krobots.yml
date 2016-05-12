@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "golang-webapp"
+  labels:
+    app: golang-webapp
+    group: webapp
+    tier: frontend
+    env: dev
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      targetPort: 3000
+      # nodePort: 32081
+  selector:
+    app: golang-webapp
+    group: webapp
+    tier: frontend
+    env: dev
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: "golang-webapp"
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: golang-webapp
+        group: webapp
+        tier: frontend
+        env: dev
+    spec:
+      containers:
+      - name: golang-webapp
+        image: "kubernetes/guestbook:v2"
+        ports:
+        - containerPort: 3000
+

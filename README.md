@@ -2,7 +2,6 @@
 
 AppsOps and tutorials based on the k8s hyperkube.
 
-
 **_Warning, not everything works yet, but should soon.
 This is a week long spare time project before Friday.
 [Tony, May 8, 2016 :]_**
