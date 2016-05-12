@@ -58,47 +58,22 @@ fi
 
 
 
-if [ "$ISAPP" -eq "1" ]; then
-    APP=`cat krobots.txt`
-    CMD=$2
-    echo "krobots: app ($APP) $CMD"
-    case $CMD in
-      create)
-        echo "sorry, create is not implemented yet. PR?"
-        ;;
-      install)
-        kubectl create -f krobots.yml
-        ;;
-      update)
-        kubectl apply -f krobots.yml
-        ;;
-      status)
-        kubectl get svc,ep,deployment,rs -l app=$APP
-        ;;
-      detail)
-        echo "krobots detail... not implemented yet. PR?"
-        exit 1
-        ;;
-      remove)
-        kubectl delete -f krobots.yml
-        ;;
-      *)
-        echo "shouldn't get here... CMD='$CMD'"
-        exit 1
-
-    esac
-
-    exit 0
-fi
 
 
 
 
-
+ymlpath="$krobotsPath/../k8s-objects"
 k8sfile="unknown"
 k8s_objects="svc,ep,deployment,rs,hpa,rc,pods"
 k8s_labels=""
 case $ARG in
+  app)
+    APP=`cat krobots.txt`
+    ymlpath="."
+    k8sfile="krobots.yml"
+    k8s_labels="-l app=$APP"
+    k8s_objects="svc,ep,deployment,rs,pods"
+    ;;
   dns)
     k8sfile="k8s/dns.yml"
     k8s_objects="svc,ep,rc,pods --namespace=kube-system"
@@ -164,10 +139,10 @@ esac
 
 case $CMD in
   install)
-    kubectl create -f $krobotsPath/../k8s-objects/$k8sfile
+    kubectl create -f $ymlpath/$k8sfile
     ;;
   update)
-    kubectl apply -f $krobotsPath/../k8s-objects/$k8sfile
+    kubectl apply -f $ymlpath/$k8sfile
     ;;
   status)
     echo kubectl get $k8s_objects $k8s_labels
@@ -178,7 +153,7 @@ case $CMD in
     kubectl describe $k8s_objects
     ;;
   remove)
-    kubectl delete -f $krobotsPath/../k8s-objects/$k8sfile
+    kubectl delete -f $ymlpath/$k8sfile
     ;;
   app)
     ISAPP=1
