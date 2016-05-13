@@ -150,7 +150,10 @@ IBM Watson - AppOps
 
 ---
 
-## Agenda
+layout: false
+class: left, top
+
+# Agenda
 
 1. Introduction
 1. Overview
@@ -159,11 +162,10 @@ IBM Watson - AppOps
 1. Demo [unicode for crossed fingers]
 1. Hands On with krobots-lite
 
-[NOTE]: Note that you need remark.js alongside this html file, but no internet connection.
 ---
 
 
-## Introduction
+# Introduction
 
 Docker is great,
 it makes isolation, configuration, consistency, and development
@@ -174,7 +176,7 @@ Running lots of containers is hard.
 
 ---
 
-## Enter Kubernetes
+# Enter Kubernetes
 
 Kubernetes is an open-source container orchestration framework.
 
@@ -186,14 +188,21 @@ Kubernetes is an open-source container orchestration framework.
 ---
 
 
-## 4 Tiers
+# Four Levels in the Stack
 
 add Diagram here
 
+---
+
 # Theory
 
+
+
+
 ---
-## DevOps => AppOps
+
+
+# DevOps becomes AppOps
 
 Kubernetes automates common cluster-level tasks.
 
@@ -208,71 +217,146 @@ traditional role of DevOps and system admins.
 
 ---
 
-## Two Pieces to understand
+# Two Pieces to understand
 
-Services: Named Endpoint
+Services are _Named Endpoints_
 
 - Named set of Pods
 - Service discovery
 - Load balancing
 
-Pods: Single Intention
+Pods are _Single Intention_
 
 - One or more containers
 - Horizontally scalable (12 factor)
 - Looks and acts as a single unit
 
-Powered by tags, lables, and annotations.
+Powered by tags, labels, and annotations.
 
 ---
 # Examples
 
-- Pods
-- Deployments
+- Pods and Deployments
 - Services
-- Exposing and Accessing
+- Accessing services
 
 ---
 
-## Pods - template
+# Pods and Deployment
 
-
----
-
-## Pods - sample
+Header:
 
 ```
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: "..."
 ```
 
----
-
-## Deployment - template
-
-
-
----
-
-## Deployment - sample
+Spec:
 
 ```
-```
-
----
-
-## Services - template
-
-
-
----
-
-## Services - sample
-
-```
+spec:
+  replicas: #
+  template:
+    metadata:
+      labels: "..."
+      annotations: "..."
+    spec:
+      serviceAccount: "..."
+      containers:
+      - name: "..."
+        image: "..."
+        env: "..."
+        ports: "..."
+        volumeMounts: "..."
+        resources: "..."
+      volumes: "..."
+      securityContext: "..."
 ```
 
 ---
 
-## Accessing a service
+# Pods and Deployment - sample
+
+```
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: "golang-webapp"
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: golang-webapp
+        group: webapp
+        tier: frontend
+        env: dev
+    spec:
+      containers:
+      - name: golang-webapp
+        image: "kubernetes/guestbook:v2"
+        ports:
+        - containerPort: 3000
+```
+
+---
+
+# Services
+
+Header:
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: "..."
+  labels: "..."
+  annotations: "..."
+```
+
+Spec:
+
+```
+spec:
+  type: "..."
+  ports: "..."
+  selector: "..."
+```
+
+
+---
+
+# Services - sample
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: "golang-webapp"
+  labels:
+    app: golang-webapp
+    group: webapp
+    tier: frontend
+    env: dev
+    router.deis.io/routable: "true"
+  annotations:
+    router.deis.io/domains: guestbook,hyper-k8s,www.krobots.io,krobots.io
+spec:
+  ports:
+    - port: 80
+      targetPort: 3000
+  selector:
+    app: golang-webapp
+    group: webapp
+    tier: frontend
+    env: dev
+```
+
+---
+
+# Accessing a service
 
 
 
